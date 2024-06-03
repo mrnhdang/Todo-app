@@ -21,7 +21,9 @@ export default function Home() {
       </div>
 
       <h1 className="font-bold text-xl font-mono">Here is your card list:</h1>
+      {/* <div className="flex flex-wrap w-3/4 min-h-screen align-middle items-start justify-center"> */}
       <TodoList />
+      {/* </div> */}
     </div>
   );
 }

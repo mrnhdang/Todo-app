@@ -16,7 +16,6 @@ export default function TodoCard({
 }: TodoCardProps) {
   return (
     <Card
-      key={id}
       sx={{
         maxWidth: 400,
         maxHeight: 300,
@@ -25,6 +24,8 @@ export default function TodoCard({
         display: "flex",
         flexDirection: "column",
         borderRadius: "15px",
+        marginRight: "10px",
+        marginBottom: "10px",
       }}
     >
       <CardActions>

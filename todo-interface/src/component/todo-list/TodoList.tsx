@@ -12,17 +12,18 @@ const TodoList = () => {
     getData();
   }, []);
   return (
-    <div className="flex flex-wrap w-3/4 min-h-screen align-middle items-start justify-center">
+    <div className="flex flex-wrap align align-middle justify-center items-start">
       {mockData.map((data) => (
-        <div className="mr-10 mb-10" key={data.id}>
-          <TodoCard
-            id={data.id}
-            title={data.title}
-            note={data.note}
-            createdAt={data.createdAt}
-            status={data.status}
-          />
-        </div>
+        // <div key={data.id}>
+        <TodoCard
+          key={data.id}
+          id={data.id}
+          title={data.title}
+          note={data.note}
+          createdAt={data.createdAt}
+          status={data.status}
+        />
+        // </div>
       ))}
     </div>
   );
