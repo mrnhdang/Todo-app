@@ -2,13 +2,15 @@ import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions } from "@mui/material";
+import { CardActionArea, CardActions, IconButton } from "@mui/material";
 import { TodoCardProps } from "@/interface";
+import CardStatus from "./CardStatus";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 
 export default function TodoCard({
   id,
   title,
-  description,
+  note,
   createdAt,
   status,
 }: TodoCardProps) {
@@ -25,32 +27,27 @@ export default function TodoCard({
         borderRadius: "15px",
       }}
     >
-      <CardActionArea sx={{ display: "flex", flexGrow: 1 }}>
+      <CardActions>
+        <IconButton color="error">
+          <DeleteOutlinedIcon />
+        </IconButton>
+      </CardActions>
+      <CardActionArea
+        sx={{ display: "flex", flexGrow: 1, marginBottom: "10px" }}
+      >
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {description}
+            {note}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {createdAt}
+            Created date: {createdAt}
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActionArea>
-        <CardContent>
-          <Typography variant="h6">{status}</Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions sx={{ flex: "none" }}>
-        <Button size="small" color="primary">
-          Edit
-        </Button>
-        <Button size="small" color="error">
-          Delete
-        </Button>
-      </CardActions>
+      <CardStatus status={status} />
     </Card>
   );
 }
