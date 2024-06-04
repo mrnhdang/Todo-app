@@ -1,5 +1,5 @@
 {
   "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
-  "outputDirectory": "build",
+  "outputDirectory": "public",
   "public": true
 }
