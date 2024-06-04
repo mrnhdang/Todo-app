@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
+    "start": "node index",
     "build": "echo 'No build necessary for this Node.js app'"
   },
   "keywords": [],
