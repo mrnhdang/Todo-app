@@ -3,13 +3,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const moment = require("moment-timezone");
 const cors = require('cors');
-const Todo = require("./models/Todo.model.js");
+const Todo = require("../models/Todo.model.js");
 require('dotenv').config();
 const app = express();
 const port = 8080;
 
 app.use(express.json()); 
-// app.use(cors());
+app.use(cors());
 
 
 mongoose
