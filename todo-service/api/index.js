@@ -6,7 +6,7 @@ const cors = require('cors');
 const Todo = require("../models/Todo.model.js");
 require('dotenv').config();
 const app = express();
-const port = 8080;
+const port = 3001;
 
 app.use(express.json()); 
 app.use(cors());
