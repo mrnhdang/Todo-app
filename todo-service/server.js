@@ -1,9 +1,10 @@
 // index.js
 const express = require("express");
 const mongoose = require("mongoose");
+const moment = require("moment-timezone");
 const cors = require('cors');
 const Todo = require("./models/Todo.model.js");
-
+require('dotenv').config();
 const app = express();
 const port = 8080;
 
@@ -12,15 +13,13 @@ app.use(cors());
 
 
 mongoose
-  .connect(
-    "mongodb+srv://dang:Dang%401234@todoappdb.jgwk6hj.mongodb.net/TodoAppDB?retryWrites=true&w=majority&appName=TodoAppDB"
-  )
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("Connected!"))
   .catch((err) => console.log(err));
 
 app.get("/api/todos", async (req, res) => {
   try {
-    const todos = await Todo.find({});
+    const todos = await Todo.find({}).sort({createdDate:-1});
     res.status(200).json(todos);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -29,11 +28,14 @@ app.get("/api/todos", async (req, res) => {
 
 app.post("/api/todo/new", async (req, res) => {
   try {
-    const newTodo = await Todo.create(req.body);
+    const {title, note, status} = req.body;
+    const payload = {title, note, status, createdDate: moment().tz("Asia/Ho_Chi_Minh").format("DD-MM-YYYY:hh:mm:ss") }
+    const newTodo = await Todo.create(payload);
     res.status(200).json(newTodo);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+
 });
 
 app.delete("/api/todo/:id", async (req, res) => {

@@ -4,8 +4,16 @@ export interface TodoCardProps {
  title: string;
  note: string;
  createdAt: string;
- status: Status;
+  status: Status;
+  getData: () => void;
 }
+export interface TodoCardType{
+  id: string;
+  title: string;
+  note: string;
+  createdAt: string;
+  status: Status;
+ }
 
 export enum Status{
  TODO = 'TODO',

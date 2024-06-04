@@ -6,30 +6,40 @@ import { CardActionArea, CardActions, IconButton } from "@mui/material";
 import { TodoCardProps } from "@/interface";
 import CardStatus from "./CardStatus";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import { deleteTodoCard } from "@/api";
 
-export default function TodoCard({
+const TodoCard: React.FC<TodoCardProps> = ({
   id,
   title,
   note,
   createdAt,
   status,
-}: TodoCardProps) {
+  getData,
+}) => {
+  const handleDeleteTodoCard = async () => {
+    try {
+      await deleteTodoCard(id);
+      getData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Card
       sx={{
         maxWidth: 400,
         maxHeight: 300,
-        width: 400,
+        width: 300,
         height: 300,
         display: "flex",
         flexDirection: "column",
         borderRadius: "15px",
-        marginRight: "10px",
-        marginBottom: "10px",
+        marginRight: "20px",
+        marginBottom: "20px",
       }}
     >
       <CardActions>
-        <IconButton color="error">
+        <IconButton color="error" onClick={handleDeleteTodoCard}>
           <DeleteOutlinedIcon />
         </IconButton>
       </CardActions>
@@ -51,4 +61,5 @@ export default function TodoCard({
       <CardStatus status={status} />
     </Card>
   );
-}
+};
+export default TodoCard;

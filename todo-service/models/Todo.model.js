@@ -14,8 +14,8 @@ const TodoSchema = mongoose.Schema({
     required: [true, "Please enter to do card status"],
   },
   createdDate: {
-    type: Date,
-    default: new Date(),
+    type: String,
+    required: [true, "Please enter date time"],
   },
 });
 

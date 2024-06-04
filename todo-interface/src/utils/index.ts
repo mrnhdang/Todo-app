@@ -1,6 +1,6 @@
-import { Status, TodoCardProps } from "@/interface";
+import { Status, TodoCardType } from "@/interface";
 
-export const mockData: TodoCardProps[] = [
+export const mockData: TodoCardType[] = [
  {
    id: "1",
    title: "Buy groceries",
@@ -76,3 +76,11 @@ export const mockData: TodoCardProps[] = [
    status: Status.INPROGRESS,
  },
 ];
+
+export const formatDate =(dateString: string) => {
+  const date = new Date(dateString);
+  const day = String(date.getUTCDate()).padStart(2, '0');
+  const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const year = date.getUTCFullYear();
+  return `${day}/${month}/${year}`;
+}

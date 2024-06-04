@@ -16,6 +16,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Status } from "@/interface";
+import { createNewTodo } from "@/api";
 
 const style: SxProps = {
   position: "absolute",
@@ -25,29 +26,54 @@ const style: SxProps = {
   width: 400,
   height: "fit-content",
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
   display: "flex",
   flexDirection: "column",
+  borderRadius: "12px",
 };
+interface TodoModalProps {
+  getData: () => void;
+  setUiState: React.Dispatch<
+    React.SetStateAction<{
+      success?: string | undefined;
+      error?: string | undefined;
+      loading: boolean;
+    }>
+  >;
+}
 
-const TodoModal = () => {
+const TodoModal: React.FC<TodoModalProps> = ({ setUiState, getData }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [status, setStatus] = React.useState("");
+  const [title, setTitle] = React.useState<string>("");
+  const [note, setNote] = React.useState<string>("");
+  const [status, setStatus] = React.useState<Status>(Status.TODO);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setStatus(event.target.value as string);
+    setStatus(event.target.value as Status);
   };
-  const handleCreateTodoCard = () => {
-    alert("create");
+  const handleCreateTodoCard = async () => {
+    try {
+      setUiState({ loading: true });
+      handleClose();
+      const newTodo = await createNewTodo({ title, note, status });
+      if (newTodo) {
+        getData();
+      }
+      setUiState({
+        loading: false,
+      });
+    } catch (error) {
+      setUiState({ loading: false, error: error as string });
+    }
   };
-
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button variant="contained" sx={{ width: "100%" }} onClick={handleOpen}>
+        Create TODO Card
+      </Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -70,13 +96,17 @@ const TodoModal = () => {
               sx={{ marginBottom: "10px" }}
               label="Title"
               variant="outlined"
+              name="title"
               fullWidth
+              onChange={(e) => setTitle(e.target.value)}
             />
             <TextField
               sx={{ marginBottom: "10px" }}
               label="Description"
               variant="outlined"
+              name="note"
               fullWidth
+              onChange={(e) => setNote(e.target.value)}
             />
             <FormControl sx={{ marginBottom: "10px" }} fullWidth>
               <InputLabel id="demo-simple-select-label">Status</InputLabel>
