@@ -28,7 +28,7 @@ const CardStatus: React.FC<CardStatusProps> = ({ status }) => {
             padding: "10px",
             backgroundColor: "#7CFC00",
           }}
-          className="font-bold text-white w-5"
+          className="font-bold text-white"
         >
           <CheckCircleOutlineOutlinedIcon />
           DONE
