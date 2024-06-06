@@ -1,10 +1,9 @@
 import { Status, TodoCardType } from "@/interface";
-import { formatDate } from "@/utils";
 import axios from "axios";
 
 export const getTodoList = async () => {
   try {
-    const todoList = await axios.get("http://localhost:8080/api/todos");
+    const todoList = await axios.get(process.env.BACKEND_URL+"/api/todos");
     const response = todoList.data;
     const returnedData: TodoCardType[] = response.map((todo: any) => ({
       id: todo._id,
@@ -26,7 +25,7 @@ export const createNewTodo = async (payload: {
 }) => {
   try {
     const todoList = await axios.post(
-      "http://localhost:8080/api/todo/new",
+      process.env.BACKEND_URL+ "/api/todo/new",
       payload
     );
     const response = todoList.data;
@@ -39,7 +38,7 @@ export const createNewTodo = async (payload: {
 export const deleteTodoCard = async (todoCardId: string) => {
   try {
     const todoList = await axios.delete(
-      "http://localhost:8080/api/todo/" + todoCardId
+      process.env.BACKEND_URL+  "/api/todo/" + todoCardId
     );
     const response = todoList.data;
     return response.message;

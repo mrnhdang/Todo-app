@@ -13,6 +13,7 @@ const CardStatus: React.FC<CardStatusProps> = ({ status }) => {
     return (
       <CardActions
         sx={{
+          width: "100%",
           height: "30px",
           display: "flex",
           justifyContent: "center",
@@ -22,6 +23,7 @@ const CardStatus: React.FC<CardStatusProps> = ({ status }) => {
       >
         <Typography
           sx={{
+            width: "fit-content",
             borderRadius: "10px",
             padding: "10px",
             backgroundColor: "#7CFC00",
@@ -37,6 +39,7 @@ const CardStatus: React.FC<CardStatusProps> = ({ status }) => {
     return (
       <CardActions
         sx={{
+          width: "100%",
           height: "30px",
           display: "flex",
           justifyContent: "center",
@@ -47,10 +50,11 @@ const CardStatus: React.FC<CardStatusProps> = ({ status }) => {
         <CardActions
           sx={{
             borderRadius: "10px",
+            width: "fit-content",
             padding: "10px",
             backgroundColor: "#00BFFF",
           }}
-          className="font-bold text-white w-5"
+          className="font-bold text-white"
         >
           <CachedOutlinedIcon />
           INPROGRESS
@@ -61,6 +65,7 @@ const CardStatus: React.FC<CardStatusProps> = ({ status }) => {
     return (
       <CardActions
         sx={{
+          width: "100%",
           height: "30px",
           display: "flex",
           justifyContent: "center",
@@ -70,11 +75,12 @@ const CardStatus: React.FC<CardStatusProps> = ({ status }) => {
       >
         <CardActions
           sx={{
+            width: "fit-content",
             borderRadius: "10px",
             padding: "10px",
             backgroundColor: "#DCDCDC",
           }}
-          className="font-bold text-white w-5"
+          className="font-bold text-white"
         >
           <HourglassEmptyOutlinedIcon />
           TODO

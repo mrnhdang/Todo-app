@@ -35,7 +35,7 @@ const TodoList = () => {
         <h1 className="font-mono font-bold text-3xl text-center">
           Welcome to Todo Application
         </h1>
-        <div className="space-x-10 flex sm:block">
+        <div className="space-x-10 flex">
           <div className="bg-white shadow-xl text-xl p-5 rounded-xl space-x-1 font-semibold flex items-center">
             You can create your note here
           </div>
